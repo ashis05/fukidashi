@@ -1,0 +1,30 @@
+# Environments
+.env
+.venv
+env/
+venv/
+
+# Python / Caches
+__pycache__/
+*.py[cod]
+*$py.class
+build/
+dist/
+*.egg-info/
+
+# Machine Learning / Models
+*.pt
+*.pth
+*.safetensors
+
+# Project Specific Outputs
+translated/
+
+# Raw images (uncomment to ignore them)
+# raw/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

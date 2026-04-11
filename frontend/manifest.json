@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "AI Manga Translator",
+  "version": "2.0",
+  "description": "Auto-translates manga pages in real-time.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:8000/*",
+    "https://*.ngrok-free.app/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}
