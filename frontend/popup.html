@@ -1,51 +1,60 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <style>
-        body { width: 220px; padding: 15px; font-family: sans-serif; text-align: center; background: #f4f4f4; }
-        .btn {
-            background-color: #4CAF50; color: white; border: none;
-            padding: 10px; font-size: 16px; cursor: pointer; border-radius: 5px;
-            width: 100%; margin-bottom: 10px; font-weight: bold;
-        }
-        .btn:hover { background-color: #45a049; }
-
-        .switch-container { display: flex; align-items: center; justify-content: center; margin-top: 10px; }
-        .switch { position: relative; display: inline-block; width: 40px; height: 20px; margin-right: 10px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 20px; }
-        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%; }
-        input:checked + .slider { background-color: #2196F3; }
-        input:checked + .slider:before { transform: translateX(20px); }
-
-        /* New Language Dropdown Style */
-        select {
-            width: 100%; padding: 8px; margin-bottom: 15px;
-            border-radius: 5px; border: 1px solid #ccc;
-        }
-
-        #status { font-size: 12px; color: #666; margin-top: 10px; }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Fukidashi</title>
+  <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-<h3>Manga Translator</h3>
+  <header class="masthead">
+    <h1 class="wordmark">Fukidashi</h1>
+    <span class="kana" lang="ja">吹き出し</span>
+  </header>
 
-<label for="languageSelect" style="font-size: 12px; font-weight: bold; display: block; margin-bottom: 5px; text-align: left;">Source Language:</label>
-<select id="languageSelect">
-    <option value="ja">Japanese (Default)</option>
-</select>
+  <main class="panel">
+    <div class="field">
+      <label for="language">Source language</label>
+      <select id="language">
+        <option value="ja">Japanese (manga)</option>
+        <option value="ko">Korean (manhwa)</option>
+        <option value="zh">Chinese (manhua)</option>
+        <option value="es">Spanish</option>
+      </select>
+      <p class="hint">Korean, Chinese and Spanish need the optional OCR pack on your server.</p>
+    </div>
 
-<button id="translateBtn" class="btn">Translate Page</button>
+    <button type="button" id="translate" class="btn-primary">
+      <span class="spinner" aria-hidden="true"></span>
+      <span id="translate-label">Translate page</span>
+    </button>
 
-<div class="switch-container">
-    <label class="switch">
-        <input type="checkbox" id="autoToggle">
-        <span class="slider"></span>
-    </label>
-    <span>Auto-Translate</span>
-</div>
+    <div class="row">
+      <input type="checkbox" id="auto" class="toggle-input">
+      <label for="auto" class="toggle">
+        <span class="track" aria-hidden="true"></span>
+        <span>Auto-translate this tab</span>
+      </label>
+    </div>
 
-<div id="status">Ready</div>
-<script src="popup.js"></script>
+    <button type="button" id="overlay" class="btn-secondary" disabled>Hide translation</button>
+
+    <details class="server" id="server">
+      <summary>Server</summary>
+      <div class="server-body">
+        <label for="server-url">Server URL</label>
+        <input type="url" id="server-url" spellcheck="false" autocomplete="off" placeholder="http://127.0.0.1:8000">
+        <div class="server-actions">
+          <button type="button" id="save" class="btn-secondary">Save</button>
+          <button type="button" id="test" class="btn-secondary">Test connection</button>
+        </div>
+        <p class="server-status"><span id="dot" class="dot" data-state="idle"></span><span id="server-msg">Not tested</span></p>
+      </div>
+    </details>
+  </main>
+
+  <p id="status" class="status" role="status" aria-live="polite" data-kind="info">Ready</p>
+  <script src="popup.js"></script>
 </body>
 </html>

@@ -28,3 +28,10 @@ translated/
 Thumbs.db
 .vscode/
 .idea/
+# Fukidashi
+out/
+.env
+.pytest_cache/
+.hf_cache/
+.paddleocr/
+.paddlex/
