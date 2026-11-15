@@ -1,0 +1,3 @@
+# Optional: OCR for non-Japanese sources (zh, ko, en, es, ...).
+paddlepaddle>=2.6
+paddleocr>=2.7
